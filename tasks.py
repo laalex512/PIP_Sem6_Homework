@@ -12,66 +12,98 @@
 #         (1+2)*3 => 9;
 
 
-initStr = "16/ 2 +1-2* 3-5"
-# Убираем лишние пробелы, если они есть:
-initStr = initStr.replace(" ", "")
-# Список, включающий строковое значение всех операций и операндов
-elementList = []
-beginCicle = 0
-currentElement = ""
-# Если строка начинается с отрицательного числа:
-if initStr[0] == "-":
-    currentElement = "-"
-    beginCicle = 1
-for i in range(beginCicle, len(initStr)):
-    if initStr[i].isdigit():
-        currentElement += initStr[i]
-    else:
-        elementList.append(currentElement)
-        currentElement = ""
-        elementList.append(initStr[i])
-    if i == len(initStr)-1:
-        elementList.append(currentElement)
+# initStr = "16/ 2 +1-2* 3-5"
+# # Убираем лишние пробелы, если они есть:
+# initStr = initStr.replace(" ", "")
+# # Список, включающий строковое значение всех операций и операндов
+# elementList = []
+# beginCicle = 0
+# currentElement = ""
+# # Если строка начинается с отрицательного числа:
+# if initStr[0] == "-":
+#     currentElement = "-"
+#     beginCicle = 1
+# for i in range(beginCicle, len(initStr)):
+#     if initStr[i].isdigit():
+#         currentElement += initStr[i]
+#     else:
+#         elementList.append(currentElement)
+#         currentElement = ""
+#         elementList.append(initStr[i])
+#     if i == len(initStr)-1:
+#         elementList.append(currentElement)
 
-print(elementList)
+# print(elementList)
 
-# Обрабатываем первые по приоритету операции * и /:
-while "/" in elementList or "*" in elementList:
-    for i in range(len(elementList)):
-        if elementList[i] == "*":
-            temp = int(elementList[i-1]) * int(elementList[i+1])
-            elementList[i-1] = str(temp)
-            elementList.remove(elementList[i])
-            elementList.remove(elementList[i])
-            print(elementList)
-            break
-        elif elementList[i] == "/":
-            temp = int(int(elementList[i-1]) / int(elementList[i+1]))
-            elementList[i-1] = str(temp)
-            elementList.remove(elementList[i])
-            elementList.remove(elementList[i])
-            print(elementList)
-            break
+# # Обрабатываем первые по приоритету операции * и /:
+# while "/" in elementList or "*" in elementList:
+#     for i in range(len(elementList)):
+#         if elementList[i] == "*":
+#             temp = int(elementList[i-1]) * int(elementList[i+1])
+#             elementList[i-1] = str(temp)
+#             elementList.remove(elementList[i])
+#             elementList.remove(elementList[i])
+#             print(elementList)
+#             break
+#         elif elementList[i] == "/":
+#             temp = int(int(elementList[i-1]) / int(elementList[i+1]))
+#             elementList[i-1] = str(temp)
+#             elementList.remove(elementList[i])
+#             elementList.remove(elementList[i])
+#             print(elementList)
+#             break
 
-# Обрабатываем вторые по приоритету операции + и -:
-while "+" in elementList or "-" in elementList:
-    for i in range(len(elementList)):
-        if elementList[i] == "+":
-            temp = int(elementList[i-1]) + int(elementList[i+1])
-            elementList[i-1] = str(temp)
-            elementList.remove(elementList[i])
-            elementList.remove(elementList[i])
-            print(elementList)
-            break
-        elif elementList[i] == "-":
-            temp = int(elementList[i-1]) - int(elementList[i+1])
-            elementList[i-1] = str(temp)
-            elementList.remove(elementList[i])
-            elementList.remove(elementList[i])
-            print(elementList)
-            break
+# # Обрабатываем вторые по приоритету операции + и -:
+# while "+" in elementList or "-" in elementList:
+#     for i in range(len(elementList)):
+#         if elementList[i] == "+":
+#             temp = int(elementList[i-1]) + int(elementList[i+1])
+#             elementList[i-1] = str(temp)
+#             elementList.remove(elementList[i])
+#             elementList.remove(elementList[i])
+#             print(elementList)
+#             break
+#         elif elementList[i] == "-":
+#             temp = int(elementList[i-1]) - int(elementList[i+1])
+#             elementList[i-1] = str(temp)
+#             elementList.remove(elementList[i])
+#             elementList.remove(elementList[i])
+#             print(elementList)
+#             break
 
-print(initStr + f" = {int(*elementList)}")
+# print(initStr + f" = {int(*elementList)}")
+
+
+################################################################################################################
+
+# 43. Дана последовательность чисел. Получить список уникальных элементов заданной последовательности.
+# *Пример:*
+# [1, 2, 3, 5, 1, 5, 3, 10] => [2, 10]
+
+
+# initList = [8, 1, 2, 7, 3, 5, 1, 5, 3, 10, 4, 7, 9]
+# print(f"Init List: {initList}")
+# # Решение алгоритмом:
+
+
+# def OneTimeIn(elementIndex):
+#     counter = True
+#     for i in range(0, elementIndex):
+#         if initList[i] == initList[elementIndex]:
+#             counter = False
+#     for i in range(elementIndex+1, len(initList)):
+#         if initList[i] == initList[elementIndex]:
+#             counter = False
+#     return counter
+
+
+# resultList = [initList[k]
+#               for k in list(filter(OneTimeIn, [i for i in range(len(initList))]))]
+# print(f"Аlgorithm solution: {resultList}")
+
+# # решение ускоренное:
+# resultList2 = list(filter(lambda x: initList.count(x) == 1, initList))
+# print(f"Quick solution: {resultList2}")
 
 
 ##############################################################################################
