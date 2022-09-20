@@ -1,3 +1,79 @@
+###################################################################################################
+
+# 41. Напишите программу вычисления арифметического выражения заданного строкой.
+# Используйте операции +,-,/,*. приоритет операций стандартный.
+#     *Пример:*
+#     2+2 => 4;
+#     1+2*3 => 7;
+#     1-2*3 => -5;
+#     - Добавьте возможность использования скобок, меняющих приоритет операций.
+#         *Пример:*
+#         1+2*3 => 7;
+#         (1+2)*3 => 9;
+
+
+initStr = "16/ 2 +1-2* 3-5"
+# Убираем лишние пробелы, если они есть:
+initStr = initStr.replace(" ", "")
+# Список, включающий строковое значение всех операций и операндов
+elementList = []
+beginCicle = 0
+currentElement = ""
+# Если строка начинается с отрицательного числа:
+if initStr[0] == "-":
+    currentElement = "-"
+    beginCicle = 1
+for i in range(beginCicle, len(initStr)):
+    if initStr[i].isdigit():
+        currentElement += initStr[i]
+    else:
+        elementList.append(currentElement)
+        currentElement = ""
+        elementList.append(initStr[i])
+    if i == len(initStr)-1:
+        elementList.append(currentElement)
+
+print(elementList)
+
+# Обрабатываем первые по приоритету операции * и /:
+while "/" in elementList or "*" in elementList:
+    for i in range(len(elementList)):
+        if elementList[i] == "*":
+            temp = int(elementList[i-1]) * int(elementList[i+1])
+            elementList[i-1] = str(temp)
+            elementList.remove(elementList[i])
+            elementList.remove(elementList[i])
+            print(elementList)
+            break
+        elif elementList[i] == "/":
+            temp = int(int(elementList[i-1]) / int(elementList[i+1]))
+            elementList[i-1] = str(temp)
+            elementList.remove(elementList[i])
+            elementList.remove(elementList[i])
+            print(elementList)
+            break
+
+# Обрабатываем вторые по приоритету операции + и -:
+while "+" in elementList or "-" in elementList:
+    for i in range(len(elementList)):
+        if elementList[i] == "+":
+            temp = int(elementList[i-1]) + int(elementList[i+1])
+            elementList[i-1] = str(temp)
+            elementList.remove(elementList[i])
+            elementList.remove(elementList[i])
+            print(elementList)
+            break
+        elif elementList[i] == "-":
+            temp = int(elementList[i-1]) - int(elementList[i+1])
+            elementList[i-1] = str(temp)
+            elementList.remove(elementList[i])
+            elementList.remove(elementList[i])
+            print(elementList)
+            break
+
+print(initStr + f" = {int(*elementList)}")
+
+
 ##############################################################################################
 
 # Задача FOOTBALL: (необязательное) Напишите программу,
