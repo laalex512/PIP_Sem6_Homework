@@ -1,0 +1,6 @@
+Barcelona; 5; Victoria; 1
+Inter; 0; Bavaria; 2
+Bavaria; 2; Barcelona; 0
+Victoria; 0; Inter; 2
+Bavaria; 3; Victoria; 0
+Inter; 1; Barcelona; 1
